@@ -1,14 +1,6 @@
-public class DeliveryMan extends Person{
-    DeliveryMan(String login,String password){
-        super(login,password);
+public class DeliveryMan{
+    DeliveryMan(){
     }
 
-    @Override
-    void showMenu() {
-        super.showMenu();
-    }
-    @Override
-    void chooseOption(){
-        super.chooseOption();
-    }
+
 }
