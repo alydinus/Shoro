@@ -32,10 +32,24 @@ public class frame extends JFrame implements ActionListener {
         if(e.getSource() == comboBox){
             if (comboBox.getSelectedItem() == "Продавец"){
                 new Salesman();
-                this.dispose();
+
 
 
             }
         }
+        if (e.getSource() == comboBox){
+            if(comboBox.getSelectedItem() == "Доставщик"){
+                new DeliveryMan();
+
+            }
+        }
+        if(e.getSource() == comboBox){
+            if(comboBox.getSelectedItem() == "Поставщик"){
+                new Provider();
+            }
+        }
+
+
+        this.dispose();
     }
 }
