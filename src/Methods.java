@@ -33,4 +33,5 @@ public abstract class Methods extends JFrame {
         }
         return (lines);
     }
+
 }

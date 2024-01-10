@@ -8,36 +8,109 @@ import java.util.*;
 public class Salesman extends JFrame implements ActionListener {
 
 
-    JLabel label;
-    JComboBox comboBox;
-    JComboBox comboBox2;
+    JLabel text1;
+    JLabel text2;
+    JLabel backGround;
+    JRadioButton option1;
+    JRadioButton option2;
+    JRadioButton option3;
+    JRadioButton option4;
+    JRadioButton option5;
+    JRadioButton option6;
+    JRadioButton option7;
+    ButtonGroup buttonGroup;
+
+
 
 
     Salesman() {
 
 
         this.setTitle("Продавец");
-        this.setSize(500, 300);
-        this.setLayout(new FlowLayout());
+        this.setIconImage(frame.shoroIcon.getImage());
+        this.setSize(500, 500);
+        this.setLocation(600,200);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setResizable(false);
 
 
-        label = new JLabel("Приветствую дорогой, Продавец!");
-        label.setBounds(0, 0, 200, 200);
-        JLabel label1 = new JLabel("Пожалуйста наберите номер меню для работы с программой");
-        label1.setBounds(100, 50, 200, 200);
-        label1.setFont(new Font("Arial", Font.PLAIN, 15));
+
+        text1 = new JLabel("Приветствую дорогой, Продавец!");
+        text1.setFont(frame.font);
+        text1.setBounds(100, 30, 400, 30);
+        text1.setForeground(Color.white);
 
 
-        String[] options = {"Показать весь список товаров для продажи", "Искать товар по названию", "Искать товар по дате", "Показать отчет по продаже", "Сделать заказ отсутствующего товара", "Удалить заказ", "Выход"};
-        comboBox = new JComboBox(options);
+        text2 = new JLabel("Пожалуйста выберите номер меню!");
+        text2.setBounds(95, 55, 500, 30);
+        text2.setFont(frame.font);
+        text2.setForeground(Color.white);
+
+        backGround = new JLabel();
+        backGround.setIcon(frame.shoroImage);
+
+        option1 = new JRadioButton("Показать весь список товаров для продажи ");
+        option2 = new JRadioButton("Искать товар по названию");
+        option3 = new JRadioButton("Искать товар по дате");
+        option4 = new JRadioButton("Показать отчет по продаже ");
+        option5 = new JRadioButton("Сделать заказ отсутствующего товара");
+        option6 = new JRadioButton("Удалить заказ");
+        option7 = new JRadioButton("Выход");
+
+        buttonGroup = new ButtonGroup();
+        buttonGroup.add(option1);
+        buttonGroup.add(option2);
+        buttonGroup.add(option3);
+        buttonGroup.add(option4);
+        buttonGroup.add(option5);
+        buttonGroup.add(option6);
+        buttonGroup.add(option7);
 
 
-        label.setFont(new Font("Arial", Font.PLAIN, 15));
-        comboBox.addActionListener(this);
-        this.add(label);
-        this.add(label1);
-        this.add(comboBox);
+
+
+        option1.setBounds(100,100,300,30);
+        option1.setFocusable(false);
+        option1.addActionListener(this);
+
+        option2.setBounds(100,135,300,30);
+        option2.setFocusable(false);
+        option2.addActionListener(this);
+
+        option3.setBounds(100,170,300,30);
+        option3.setFocusable(false);
+        option3.addActionListener(this);
+
+        option4.setBounds(100,205,300,30);
+        option4.setFocusable(false);
+        option4.addActionListener(this);
+
+        option5.setBounds(100,240,300,30);
+        option5.setFocusable(false);
+        option5.addActionListener(this);
+
+        option6.setBounds(100,275,300,30);
+        option6.setFocusable(false);
+        option6.addActionListener(this);
+
+        option7.setBounds(100,310,300,30);
+        option7.setFocusable(false);
+        option7.addActionListener(this);
+
+
+
+
+
+        this.add(text1);
+        this.add(text2);
+        this.add(option1);
+        this.add(option2);
+        this.add(option3);
+        this.add(option4);
+        this.add(option5);
+        this.add(option6);
+        this.add(option7);
+        this.add(backGround);
 
         this.setVisible(true);
 
@@ -46,30 +119,30 @@ public class Salesman extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Показать весь список товаров для продажи") {
+        if (e.getSource() == option1) {
             Methods.showFile("sale.txt");
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Искать товар по названию") {
+        if (e.getSource() == option2) {
             searchGoodsByName();
 
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Искать товар по дате") {
+        if (e.getSource() == option3) {
             searchGoodsByDate();
 
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Показать отчет по продаже") {
+        if (e.getSource() == option4) {
            Methods.showFile("sold.txt");
 
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Сделать заказ отсутствующего товара") {
+        if (e.getSource() == option5) {
             makeOrder();
 
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Удалить заказ") {
+        if (e.getSource() == option6) {
             removeOrder();
 
         }
-        if (e.getSource() == comboBox && comboBox.getSelectedItem() == "Выход") {
+        if (e.getSource() == option7) {
             this.dispose();
             System.out.println("Программа завершена, мы будем рады вашему возвращению!");
 
@@ -106,10 +179,8 @@ public class Salesman extends JFrame implements ActionListener {
             File file = new File("outOfStock.txt");
             Scanner scanner1 = new Scanner(file);
             while (scanner1.hasNextLine()) {
-                int i = 1;
                 String data = scanner1.nextLine();
-                System.out.println(i + "." + data);
-                i++;
+                System.out.println( data);
             }
             System.out.println("Выберите товар, который хотите заказать.");
             int choice = scanner.nextInt();
